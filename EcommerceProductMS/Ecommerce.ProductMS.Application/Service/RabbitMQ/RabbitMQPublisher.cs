@@ -40,10 +40,10 @@ public class RabbitMQPublisher : IRabbitMQPublisher, IDisposable
 
         //Create exchange
         string exchangeName = _configuration["RabbitMQ_Products_Exchange"]!;
-        _channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Fanout, durable: true);
+        _channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Direct, durable: true);
 
         //Publish message
-        _channel.BasicPublish(exchange: exchangeName, routingKey: string.Empty, basicProperties: null, body: messageBodyInBytes);
+        _channel.BasicPublish(exchange: exchangeName, routingKey: routingKey, basicProperties: null, body: messageBodyInBytes);
     }
 
     public void Dispose()
