@@ -1,10 +1,9 @@
-﻿using Ecommerce.ProductMS.Application.Service.Abstraction;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
 
-namespace Ecommerce.ProductMS.Application.Service.Concrete;
+namespace Ecommerce.ProductMS.Application.Service.RabbitMQ;
 
 public class RabbitMQPublisher : IRabbitMQPublisher, IDisposable
 {

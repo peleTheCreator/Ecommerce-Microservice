@@ -1,5 +1,6 @@
 ﻿using Ecommerce.ProductMS.Application.Service.Abstraction;
 using Ecommerce.ProductMS.Application.Service.Concrete;
+using Ecommerce.ProductMS.Application.Service.RabbitMQ;
 using Ecommerce.ProductMS.Application.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -14,9 +15,10 @@ public static class DependencyInjection
     {
         services.AddTransient<IProductsService, ProductsService>();
         //FluentValidations
-       // builder.Services.AddFluentValidationAutoValidation();
-        builder.Services.AddValidatorsFromAssemblyContaining<ProductAddRequestValidator>();
+        // builder.Services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssemblyContaining<ProductAddRequestValidator>();
 
+        services.AddTransient<IRabbitMQPublisher, RabbitMQPublisher>();
 
     }
 }

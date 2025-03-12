@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.ProductMS.Application.Service.Abstraction;
+﻿namespace Ecommerce.ProductMS.Application.Service.RabbitMQ;
 
 public interface IRabbitMQPublisher
 {
