@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Ecommerce.ProductMS.API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags": [
+          "Ecommerce.ProductMS.API"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/products/search/product-id/{ProductID}": {
+      "get": {
+        "tags": [
+          "Ecommerce.ProductMS.API"
+        ],
+        "parameters": [
+          {
+            "name": "ProductID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

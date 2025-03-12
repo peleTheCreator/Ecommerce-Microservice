@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  postgres-container:
+    image: postgres:16.1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: eCommerceUsers
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./usermsscripts/startupsql:/docker-entrypoint-initdb.d
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "eCommerceUsers", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  users-microservice:
+    image: pelethecreator/ecommerceusermsapi:latest
+    environment:
+      POSTGRES_HOST: postgres-container
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: eCommerceUsers
+      POSTGRES_PORT: 5432
+    ports:
+      - "9090:9090"
+    networks:
+      - ecommerce-network
+    depends_on:
+      postgres-container:
+        condition: service_healthy
+
+  mysql-container:
+    image: mysql:8.3.0
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./productscript/startupsql:/docker-entrypoint-initdb.d
+    networks:
+      - ecommerce-network
+    hostname: mysql-host-productsmicroservice
+
+  products-microservice:
+    image: pelethecreator/ecommerceproductmsapi:latest
+    environment:
+      MYSQL_HOST: mysql-host-productsmicroservice
+      MYSQL_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+      - ecommerce-network
+    depends_on:
+      - mysql-container
+
+networks:
+  ecommerce-network:
+    driver: bridge

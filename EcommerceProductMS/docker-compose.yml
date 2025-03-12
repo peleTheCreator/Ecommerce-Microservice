@@ -1,0 +1,38 @@
+services:
+  # Product Microservice
+  ecommerce.productms.api:
+    image: ${DOCKER_REGISTRY-}ecommerceproductmsapi
+    build:
+      context: .
+      dockerfile: Ecommerce.ProductMS.API/Dockerfile
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8080         # Kestrel listens on port 8080 inside the container
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MYSQL_HOST=mysql-container         # MySQL service name for internal communication
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=ecommerceproductsdatabase
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=admin
+    ports:
+      - "6000:8080"                        # Map container port 8080 (Kestrel) to host port 6000
+    networks:
+      - products-mysql-network
+    depends_on:
+      - mysql-container
+
+  # MySQL Database Container
+  mysql-container:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin         # Root password for MySQL
+    ports:
+      - "3307:3306"                        # Map container port 3306 to host port 3307
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d   # Custom initialization scripts for MySQL
+    networks:
+      - products-mysql-network
+
+# Network Configuration
+networks:
+  products-mysql-network:
+    driver: bridge

@@ -1,0 +1,36 @@
+services:
+  ecommerce.userms.api:
+    image: ecommerceusermsapi
+    build:
+      context: .
+      dockerfile: Ecommerce.UserMS/Dockerfile
+    environment:
+      - POSTGRES_HOST=postgres-container
+      - POSTGRES_PORT=5432
+      - POSTGRES_DATABASE=eCommerceUsers
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - ASPNETCORE_URLS=http://+:9090  # Ensure Kestrel binds to 9090
+    ports:
+      - "9090:9090"  # Expose the container's 9090 to the host's 9090
+    networks:
+      - users-postgres-network
+    depends_on:
+      - postgres-container
+
+  postgres-container:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=eCommerceUsers
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - users-postgres-network
+
+networks:
+  users-postgres-network:
+    driver: bridge

@@ -1,0 +1,12 @@
+services:
+  ecommerce.userms.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development  # Ensure Development environment
+      - ASPNETCORE_HTTP_PORTS=9090  # Kestrel HTTP port
+      - ASPNETCORE_HTTPS_PORTS=9091  # Kestrel HTTPS port
+    ports:
+      - "9090:9090"  # HTTP port mapping
+      - "9091:9091"  # HTTPS port mapping
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro  # UserSecrets for development
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro  # SSL certificates for HTTPS
