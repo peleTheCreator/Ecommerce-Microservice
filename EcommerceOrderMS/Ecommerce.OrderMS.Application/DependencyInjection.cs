@@ -1,6 +1,9 @@
 ﻿using Ecommerce.OrderMS.Application.HttpClients;
 using Ecommerce.OrderMS.Application.Service.Abstraction;
 using Ecommerce.OrderMS.Application.Service.Concrete;
+using Ecommerce.OrderMS.Application.Service.RabbitMQ.Consumer.Abstraction;
+using Ecommerce.OrderMS.Application.Service.RabbitMQ.Consumer.BgService;
+using Ecommerce.OrderMS.Application.Service.RabbitMQ.Consumer.Concrete;
 using Ecommerce.OrderMS.Application.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -28,6 +31,11 @@ public static class DependencyInjection
 
 
         services.AddTransient<IOrdersService, OrdersService>();
+
+        services.AddTransient<IRabbitMQProductNameUpdateConsumer, RabbitMQProductNameUpdateConsumer>();
+        services.AddTransient<IRabbitMQProductDeletionConsumer, RabbitMQProductDeletionConsumer>();
+        services.AddHostedService<RabbitMQProductNameUpdateHostedService>();
+        services.AddHostedService<RabbitMQProductDeletionHostedService>();
 
     }
 }
