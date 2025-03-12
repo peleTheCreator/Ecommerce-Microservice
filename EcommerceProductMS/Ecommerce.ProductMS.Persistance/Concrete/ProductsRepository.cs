@@ -1,6 +1,6 @@
 ﻿using Ecommerce.ProductMS.Application.Persisitance.Abstraction;
 using Ecommerce.ProductMS.Domain.Entities;
-using Ecommerce.ProductMS.Persistance.DbContext;
+using Ecommerce.ProductMS.Persistance;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

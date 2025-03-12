@@ -1,6 +1,5 @@
 ﻿using Ecommerce.ProductMS.Application.Persisitance.Abstraction;
 using Ecommerce.ProductMS.Persistance.Concrete;
-using Ecommerce.ProductMS.Persistance.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
