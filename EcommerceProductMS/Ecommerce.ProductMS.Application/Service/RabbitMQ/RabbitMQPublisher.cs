@@ -20,6 +20,11 @@ public class RabbitMQPublisher : IRabbitMQPublisher, IDisposable
         string password = _configuration["RabbitMQ_Password"]!;
         string port = _configuration["RabbitMQ_Port"]!;
 
+        Console.WriteLine("hostName", hostName);
+        Console.WriteLine("userName", userName);
+        Console.WriteLine("password", password);
+        Console.WriteLine("port", port);
+
         ConnectionFactory connectionFactory = new ConnectionFactory()
         {
             HostName = hostName,

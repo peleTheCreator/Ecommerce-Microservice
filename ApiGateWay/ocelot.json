@@ -7,7 +7,7 @@
       "DownstreamHostAndPorts":
       [
         {
-            "Host": "ecommerce.orderms.api",
+            "Host": "orders-microservice",
             "Port": 8080
         }
       ],
@@ -27,7 +27,7 @@
       "DownstreamHostAndPorts":
       [
         {
-            "Host": "ecommerce.orderms.api",
+            "Host": "orders-microservice",
             "Port": 8080
         }
       ],
@@ -45,7 +45,7 @@
       "DownstreamHostAndPorts":
       [
         {
-            "Host": "ecommerce.orderms.api",
+            "Host": "orders-microservice",
             "Port": 8080
         }
       ],
@@ -63,7 +63,7 @@
       "DownstreamHostAndPorts":
       [
         {
-            "Host": "ecommerce.orderms.api",
+            "Host": "orders-microservice",
             "Port": 8080
         }
       ],
@@ -81,7 +81,7 @@
       "DownstreamHostAndPorts":
       [
         {
-            "Host": "ecommerce.orderms.api",
+            "Host": "orders-microservice",
             "Port": 8080
         }
       ],
@@ -99,7 +99,7 @@
       "DownstreamHostAndPorts":
       [
         {
-            "Host": "ecommerce.orderms.api",
+            "Host": "orders-microservice",
             "Port": 8080
         }
       ],

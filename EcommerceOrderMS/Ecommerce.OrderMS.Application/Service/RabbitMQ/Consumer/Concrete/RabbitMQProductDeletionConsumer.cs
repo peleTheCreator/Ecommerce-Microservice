@@ -1,5 +1,6 @@
 ﻿using Ecommerce.OrderMS.Application.Service.RabbitMQ.Consumer.Abstraction;
 using Ecommerce.OrderMS.Domain.Model.RabbitMQ;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -20,12 +21,17 @@ public class RabbitMQProductDeletionConsumer : IDisposable, IRabbitMQProductDele
     {
         _configuration = configuration;
 
+        Console.WriteLine($"RabbitMQ_HostName: {_configuration["RabbitMQ_HostName"]}");
+        Console.WriteLine($"RabbitMQ_UserName: {_configuration["RabbitMQ_UserName"]}");
+        Console.WriteLine($"RabbitMQ_Password: {_configuration["RabbitMQ_Password"]}");
+        Console.WriteLine($"RabbitMQ_Port: {_configuration["RabbitMQ_Port"]}");
+
+
         string hostName = _configuration["RabbitMQ_HostName"]!;
         string userName = _configuration["RabbitMQ_UserName"]!;
         string password = _configuration["RabbitMQ_Password"]!;
         string port = _configuration["RabbitMQ_Port"]!;
         _logger = logger;
-
 
         ConnectionFactory connectionFactory = new ConnectionFactory()
         {
@@ -35,7 +41,6 @@ public class RabbitMQProductDeletionConsumer : IDisposable, IRabbitMQProductDele
             Port = Convert.ToInt32(port)
         };
         _connection = connectionFactory.CreateConnection();
-
         _channel = _connection.CreateModel();
     }
 
@@ -83,3 +88,6 @@ public class RabbitMQProductDeletionConsumer : IDisposable, IRabbitMQProductDele
         _connection.Dispose();
     }
 }
+
+
+
