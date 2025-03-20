@@ -1,0 +1,221 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Users Microservice API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ecommerce-api-manager.azure-api.net/gateway/users"
+        }
+    ],
+    "paths": {
+        "/Auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "/api/Auth/register - POST",
+                "description": "/api/Auth/register - POST",
+                "operationId": "post-api-auth-register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            },
+                            "example": {
+                                "email": "string",
+                                "password": "string",
+                                "personName": "string",
+                                "gender": "Male"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            },
+                            "example": {
+                                "email": "string",
+                                "password": "string",
+                                "personName": "string",
+                                "gender": "Male"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            },
+                            "example": {
+                                "email": "string",
+                                "password": "string",
+                                "personName": "string",
+                                "gender": "Male"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/Auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "/api/Auth/login - POST",
+                "description": "/api/Auth/login - POST",
+                "operationId": "post-api-auth-login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            },
+                            "example": {
+                                "email": "string",
+                                "password": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            },
+                            "example": {
+                                "email": "string",
+                                "password": "string"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            },
+                            "example": {
+                                "email": "string",
+                                "password": "string"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/{userID}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "/api/Users/{userID} - GET",
+                "description": "/api/Users/{userID} - GET",
+                "operationId": "get-api-users-userid",
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "/api/Users - GET",
+                "description": "/api/Users - GET",
+                "operationId": "get-api-users",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GenderOptions": {
+                "enum": [
+                    "Male",
+                    "Female",
+                    "Others"
+                ],
+                "type": "string"
+            },
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "RegisterRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "personName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "gender": {
+                        "$ref": "#/components/schemas/GenderOptions"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}

@@ -1,0 +1,250 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Products Microservice API",
+        "description": "",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ecommerce-api-manager.azure-api.net/gateway/products"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "ProductsMicroService.API"
+                ],
+                "summary": "/api/products - GET",
+                "description": "/api/products - GET",
+                "operationId": "get-api-products",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ProductsMicroService.API"
+                ],
+                "summary": "/api/products - POST",
+                "description": "/api/products - POST",
+                "operationId": "post-api-products",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductAddRequest"
+                            },
+                            "example": {
+                                "productName": "string",
+                                "category": 0,
+                                "unitPrice": 0,
+                                "quantityInStock": 0
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ProductsMicroService.API"
+                ],
+                "summary": "/api/products - PUT",
+                "description": "/api/products - PUT",
+                "operationId": "put-api-products",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductUpdateRequest"
+                            },
+                            "example": {
+                                "productID": "string",
+                                "productName": "string",
+                                "category": 0,
+                                "unitPrice": 0,
+                                "quantityInStock": 0
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/search/product-id/{ProductID}": {
+            "get": {
+                "tags": [
+                    "ProductsMicroService.API"
+                ],
+                "summary": "/api/products/search/product-id/{ProductID} - GET",
+                "description": "/api/products/search/product-id/{ProductID} - GET",
+                "operationId": "get-api-products-search-product-id-productid",
+                "parameters": [
+                    {
+                        "name": "ProductID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/search/{SearchString}": {
+            "get": {
+                "tags": [
+                    "ProductsMicroService.API"
+                ],
+                "summary": "/api/products/search/{SearchString} - GET",
+                "description": "/api/products/search/{SearchString} - GET",
+                "operationId": "get-api-products-search-searchstring",
+                "parameters": [
+                    {
+                        "name": "SearchString",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/{ProductID}": {
+            "delete": {
+                "tags": [
+                    "ProductsMicroService.API"
+                ],
+                "summary": "/api/products/{ProductID} - DELETE",
+                "description": "/api/products/{ProductID} - DELETE",
+                "operationId": "delete-api-products-productid",
+                "parameters": [
+                    {
+                        "name": "ProductID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CategoryOptions": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "ProductAddRequest": {
+                "type": "object",
+                "properties": {
+                    "productName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/CategoryOptions"
+                    },
+                    "unitPrice": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "quantityInStock": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ProductUpdateRequest": {
+                "type": "object",
+                "properties": {
+                    "productID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "productName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/CategoryOptions"
+                    },
+                    "unitPrice": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "quantityInStock": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}

@@ -1,0 +1,824 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Orders Microservice API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ecommerce-api-manager.azure-api.net/gateway/orders"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders - GET",
+                "description": "/api/Orders - GET",
+                "operationId": "get-api-orders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "examples": {
+                                    "default": {
+                                        "value": null
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders - POST",
+                "description": "/api/Orders - POST",
+                "operationId": "post-api-orders",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderAddRequest"
+                            },
+                            "example": {
+                                "userID": "string",
+                                "orderDate": "string",
+                                "orderItems": [
+                                    {
+                                        "productID": "string",
+                                        "unitPrice": 0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderAddRequest"
+                            },
+                            "example": {
+                                "userID": "string",
+                                "orderDate": "string",
+                                "orderItems": [
+                                    {
+                                        "productID": "string",
+                                        "unitPrice": 0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderAddRequest"
+                            },
+                            "example": {
+                                "userID": "string",
+                                "orderDate": "string",
+                                "orderItems": [
+                                    {
+                                        "productID": "string",
+                                        "unitPrice": 0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/search/orderid/{orderID}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders/search/orderid/{orderID} - GET",
+                "description": "/api/Orders/search/orderid/{orderID} - GET",
+                "operationId": "get-api-orders-search-orderid-orderid",
+                "parameters": [
+                    {
+                        "name": "orderID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                },
+                                "examples": {
+                                    "default": {
+                                        "value": null
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                },
+                                "example": {
+                                    "orderID": "string",
+                                    "userID": "string",
+                                    "totalBill": 0,
+                                    "orderDate": "string",
+                                    "orderItems": [
+                                        {
+                                            "productID": "string",
+                                            "unitPrice": 0,
+                                            "quantity": 0,
+                                            "totalPrice": 0,
+                                            "productName": "string",
+                                            "category": "string"
+                                        }
+                                    ],
+                                    "userPersonName": "string",
+                                    "email": "string"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                },
+                                "example": {
+                                    "orderID": "string",
+                                    "userID": "string",
+                                    "totalBill": 0,
+                                    "orderDate": "string",
+                                    "orderItems": [
+                                        {
+                                            "productID": "string",
+                                            "unitPrice": 0,
+                                            "quantity": 0,
+                                            "totalPrice": 0,
+                                            "productName": "string",
+                                            "category": "string"
+                                        }
+                                    ],
+                                    "userPersonName": "string",
+                                    "email": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search/productid/{productID}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders/search/productid/{productID} - GET",
+                "description": "/api/Orders/search/productid/{productID} - GET",
+                "operationId": "get-api-orders-search-productid-productid",
+                "parameters": [
+                    {
+                        "name": "productID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "examples": {
+                                    "default": {
+                                        "value": null
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search/orderDate/{orderDate}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders/search/orderDate/{orderDate} - GET",
+                "description": "/api/Orders/search/orderDate/{orderDate} - GET",
+                "operationId": "get-api-orders-search-orderdate-orderdate",
+                "parameters": [
+                    {
+                        "name": "orderDate",
+                        "in": "path",
+                        "description": "Format - date-time (as date-time in RFC3339).",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "examples": {
+                                    "default": {
+                                        "value": null
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search/userid/{userID}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders/search/userid/{userID} - GET",
+                "description": "/api/Orders/search/userid/{userID} - GET",
+                "operationId": "get-api-orders-search-userid-userid",
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "examples": {
+                                    "default": {
+                                        "value": null
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "orderID": "string",
+                                        "userID": "string",
+                                        "totalBill": 0,
+                                        "orderDate": "string",
+                                        "orderItems": [
+                                            {
+                                                "productID": "string",
+                                                "unitPrice": 0,
+                                                "quantity": 0,
+                                                "totalPrice": 0,
+                                                "productName": "string",
+                                                "category": "string"
+                                            }
+                                        ],
+                                        "userPersonName": "string",
+                                        "email": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{orderID}": {
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders/{orderID} - PUT",
+                "description": "/api/Orders/{orderID} - PUT",
+                "operationId": "put-api-orders-orderid",
+                "parameters": [
+                    {
+                        "name": "orderID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderUpdateRequest"
+                            },
+                            "example": {
+                                "orderID": "string",
+                                "userID": "string",
+                                "orderDate": "string",
+                                "orderItems": [
+                                    {
+                                        "productID": "string",
+                                        "unitPrice": 0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderUpdateRequest"
+                            },
+                            "example": {
+                                "orderID": "string",
+                                "userID": "string",
+                                "orderDate": "string",
+                                "orderItems": [
+                                    {
+                                        "productID": "string",
+                                        "unitPrice": 0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderUpdateRequest"
+                            },
+                            "example": {
+                                "orderID": "string",
+                                "userID": "string",
+                                "orderDate": "string",
+                                "orderItems": [
+                                    {
+                                        "productID": "string",
+                                        "unitPrice": 0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "/api/Orders/{orderID} - DELETE",
+                "description": "/api/Orders/{orderID} - DELETE",
+                "operationId": "delete-api-orders-orderid",
+                "parameters": [
+                    {
+                        "name": "orderID",
+                        "in": "path",
+                        "description": "Format - uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "OrderAddRequest": {
+                "type": "object",
+                "properties": {
+                    "userID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "orderDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "orderItems": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItemAddRequest"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderItemAddRequest": {
+                "type": "object",
+                "properties": {
+                    "productID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "unitPrice": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderItemResponse": {
+                "type": "object",
+                "properties": {
+                    "productID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "unitPrice": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPrice": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "productName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "category": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderItemUpdateRequest": {
+                "type": "object",
+                "properties": {
+                    "productID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "unitPrice": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderResponse": {
+                "type": "object",
+                "properties": {
+                    "orderID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "userID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "totalBill": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "orderDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "orderItems": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItemResponse"
+                        },
+                        "nullable": true
+                    },
+                    "userPersonName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderUpdateRequest": {
+                "type": "object",
+                "properties": {
+                    "orderID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "userID": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "orderDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "orderItems": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItemUpdateRequest"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}
