@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: pelethecreator.azurecr.io/ecommerce-postgres:latest
+        image: pelethecreator01.azurecr.io/ecommerce-postgres:latest
         env:
         - name: POSTGRES_USER
           value: postgres

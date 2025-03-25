@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: pelethecreator.azurecr.io/ecommerce-mysql:latest
+        image: pelethecreator01.azurecr.io/ecommerce-mysql:latest
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: admin

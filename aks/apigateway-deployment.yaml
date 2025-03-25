@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: apigateway
-        image: pelethecreator.azurecr.io/apigateway:latest
+        image: pelethecreator01.azurecr.io/apigateway:latest
         ports:
         - containerPort: 8080
 

@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: pelethecreator.azurecr.io/ecommerce-mongodb:latest
+        image: pelethecreator01.azurecr.io/ecommerce-mongodb:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 27017

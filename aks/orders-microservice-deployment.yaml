@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: orders-microservice
-        image: pelethecreator.azurecr.io/orders-microservice:latest
+        image: pelethecreator01.azurecr.io/orders-microservice:latest
         ports:
         - containerPort: 8080
         env:

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: users-microservice
-        image: pelethecreator.azurecr.io/users-microservice:latest
+        image: pelethecreator01.azurecr.io/users-microservice:latest
         ports:
         - containerPort: 9090
         env:
