@@ -18,6 +18,7 @@ spec:
       containers:
       - name: apigateway
         image: pelethecreator01.azurecr.io/apigateway:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
 
